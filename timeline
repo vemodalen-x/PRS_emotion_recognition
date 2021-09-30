@@ -1,0 +1,14 @@
+0. 面部侦测 开始峰值结束界定 预处理 由给出的数据集完成 => 特征提取 分类 评估
+---
+1. 调查现有工作的目标，以确定一个基线。基线以数据集、算法和性能指标进行捕获。[LBP-TOP + SVM]
+2. 定义一个完全或部分建立在基线方法基础上的机器学习系统                  [fake-3D-CNN + attention]
+3. 消融，即并排比较基线和我们定义的方法结果                            [Fake-3D-CNN]
+---
+1. 数据集 使用CASMEⅡ(公共最小帧数)   [后续: + SAMM]
+2. 模型   fake-3D-CNN             [后续: + attention]
+3. 测试   留一法
+---
+datasets:
+    CASME Ⅱ: disgust 63 fear 2 happy 32 others 99 repression 27 sad 4 surprise 28 |
+    24 EP02_07 | 9 EP02_02f : 无标签
+    数据最小帧数为24 最大帧数为126

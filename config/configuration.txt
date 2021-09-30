@@ -1,0 +1,17 @@
+[data paths]
+result_path = /output/result/
+model_save_path = /output/output_model/
+Data_path = /data/CASME2/CASME2_preprocessed_LiXiaobai/data_encapsilation/
+
+[experiment name]
+name = conv3D
+
+[data attributes]
+nb_classes = 7
+img_size = 48
+
+
+[training settings]
+nbEpoch = 30
+batch_size = 2
+lr = 0.0001
