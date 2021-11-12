@@ -1,0 +1,125 @@
+# global configs
+Global:
+  checkpoints: null
+  pretrained_model: null
+  output_dir: ./output/
+  device: gpu
+  save_interval: 2
+  eval_during_train: True
+  eval_interval: 1
+  epochs: 50
+  print_batch_step: 50
+  use_visualdl: False
+  # used for static mode and model export
+  image_shape: [1, 128, 128]
+  save_inference_dir: ./inference
+  ls_epsilon: 0.1 
+
+# model architecture
+Arch:
+  name: Res2Net200_vd_26w_4s
+  class_num: 7
+ 
+# loss function config for traing/eval process
+Loss:
+  Train:
+    - MixCELoss:
+        weight: 1.0
+  Eval:
+    - CELoss:
+        weight: 1.0
+
+
+Optimizer:
+  name: Momentum
+  momentum: 0.9
+  lr:
+    name: Cosine
+    learning_rate: 0.005
+  regularizer:
+    name: 'L2'
+    coeff: 0.0001
+
+
+# data loader for train and eval
+DataLoader:
+  Train:
+    dataset:
+      name: ImageNetDataset
+      image_root: ./work/train/
+      cls_label_path: ./work/train/train_list.txt
+      transform_ops:
+        - DecodeImage:
+            to_rgb: False
+            channel_first: False
+        - RandFlipImage:
+            flip_code: 1
+        - NormalizeImage:
+            scale: 1.0/255.0
+            mean: [0.485, 0.456, 0.406]
+            std: [0.229, 0.224, 0.225]
+            order: ''
+      batch_transform_ops:
+        - MixupOperator:
+            alpha: 0.2
+
+    sampler:
+      name: DistributedBatchSampler
+      batch_size: 32
+      drop_last: False
+      shuffle: True
+    loader:
+      num_workers: 4
+      use_shared_memory: True
+
+  Eval:
+    dataset: 
+      name: ImageNetDataset
+      image_root: ./work/train/
+      cls_label_path: ./work/train/val_list.txt
+      transform_ops:
+        - DecodeImage:
+            to_rgb: False
+            channel_first: False
+        - ResizeImage:
+            resize_short: 128
+        - NormalizeImage:
+            scale: 1.0/255.0
+            mean: [0.485, 0.456, 0.406]
+            std: [0.229, 0.224, 0.225]
+            order: ''
+    sampler:
+      name: DistributedBatchSampler
+      batch_size: 32
+      drop_last: False
+      shuffle: False
+    loader:
+      num_workers: 4
+      use_shared_memory: True
+
+Infer:
+  infer_imgs: docs/images/whl/demo.jpg
+  batch_size: 10
+  transforms:
+    - DecodeImage:
+        to_rgb: True
+        channel_first: False
+    - ResizeImage:
+        resize_short: 256
+    - CropImage:
+        size: 224
+    - NormalizeImage:
+        scale: 1.0/255.0
+        mean: [0.485, 0.456, 0.406]
+        std: [0.229, 0.224, 0.225]
+        order: ''
+    - ToCHWImage:
+  PostProcess:
+    name: Topk
+    topk: 5
+    class_id_map_file: ppcls/utils/imagenet1k_label_list.txt
+
+Metric:
+  Eval:
+    - TopkAcc:
+        topk: [1, 5]

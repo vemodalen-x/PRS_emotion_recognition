@@ -1,0 +1,48 @@
+Model: MobileNetV3_large_ssld
+Transforms:
+- Resize:
+    interp: LINEAR
+    keep_ratio: false
+    target_size: !!python/tuple
+    - 48
+    - 48
+- Normalize:
+    is_scale: true
+    max_val:
+    - 255.0
+    - 255.0
+    - 255.0
+    mean:
+    - 0.485
+    - 0.456
+    - 0.406
+    min_val:
+    - 0
+    - 0
+    - 0
+    std:
+    - 0.229
+    - 0.224
+    - 0.225
+_Attributes:
+  eval_metrics:
+    acc1: 0.6368290781974792
+  fixed_input_shape:
+  - -1
+  - 3
+  - -1
+  - -1
+  labels:
+  - angry
+  - fearful
+  - happy
+  - neutral
+  - sad
+  - surprised
+  model_type: classifier
+  num_classes: 6
+_init_params:
+  num_classes: 6
+completed_epochs: 0
+status: Infer
+version: 2.0.0

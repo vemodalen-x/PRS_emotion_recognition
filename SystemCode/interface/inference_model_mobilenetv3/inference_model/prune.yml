@@ -1,0 +1,89 @@
+pruner: L1NormFilterPruner
+pruner_inputs:
+- 1
+- 3
+- 48
+- 48
+pruning_ratios:
+  conv11_expand_weights: !!python/object/apply:numpy.core.multiarray.scalar
+  - &id001 !!python/object/apply:numpy.dtype
+    args:
+    - f8
+    - false
+    - true
+    state: !!python/tuple
+    - 3
+    - <
+    - null
+    - null
+    - null
+    - -1
+    - -1
+    - 0
+  - !!binary |
+    QM2K0X5DwT8=
+  conv12_linear_weights: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    foHtJcNgwj8=
+  conv12_se_1_weights: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    yZf3Hqqx4z8=
+  conv13_expand_weights: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    LLugjMj+wz8=
+  conv13_se_1_weights: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    4okmoWP83T8=
+  conv14_linear_weights: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    SGZljvczvz8=
+  conv14_se_1_weights: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    S6Zjoe+F5j8=
+  conv15_expand_weights: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    DBhdPmIj0j8=
+  conv15_se_1_weights: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    YZwOjv4A4D8=
+  conv16_expand_weights: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    SzDIAjAGwT8=
+  conv16_se_1_weights: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    y1XOB/BJ4T8=
+  conv4_expand_weights: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    PsuvuhTTvj8=
+  conv5_se_1_weights: 0.9
+  conv6_expand_weights: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    C2CNfcFiwD8=
+  conv6_se_1_weights: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    FRyifXgZ4T8=
+  conv7_expand_weights: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    cNU65tBawD8=
+  conv7_se_1_weights: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    DrH2vgOF5D8=
+  conv_last_weights: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    3cKuPMNBxD8=
